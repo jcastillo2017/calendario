@@ -45,13 +45,18 @@
 	var numberdays = document.getElementById("numberdays").value;
 	var countrycode = document.getElementById("countrycode").value;
 
-	console.log(startdate,numberdays,countrycode);
+	var dateObj = new Date(startdate);
+	var month = dateObj.getUTCMonth() + 1; //months from 1-12
+	var day = dateObj.getUTCDate();
+	var year = dateObj.getUTCFullYear();
+	
+	console.log(year + "/" + month + "/" + day);
 
 	var mes_text = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	var dia_text = ["S", "M", "T", "W", "T", "F", "S"];
 
 function estructurar() {
-  for (m = 0; m <= 11; m++) {
+  for (m = month; m <= 11; m++) {
     //Mes
     let mes = document.createElement("DIV");
     mes.className = "mes";
@@ -91,7 +96,7 @@ function estructurar() {
 }
 
 function numerar() {
-  for (i = 1; i < 366; i++) {
+  for (i = 1; i < numberdays; i++) {
     let fecha = fechaPorDia(2008, i);
     let mes = fecha.getMonth();
     let select_tabla = document.getElementsByClassName('tabla_mes')[mes];
